@@ -20,19 +20,19 @@ type Girl struct {
 
 func (g *Girl) Speak() {}
 
-func NewHuman(name string) Human {
+func newHuman(name string) Human {
 	return &Man{Name: name}
 }
 
 func RunTypeAssertionExample() {
-	human := NewHuman("Xavier")
+	human := newHuman("Xavier")
 
 	/*
 	 * unchecked type assertion
 	 */
 
 	// girl := human.(*Girl) // panic as human is not *Girl
-	// man := human.(*Man) // man, the value of type assertion is type *Man
+	// man := human.(*Man) // man, the value of type assertion, is type *Man
 
 	/*
 	 * checked type assertion, which is the best practice
@@ -59,7 +59,7 @@ func RunTypeAssertionExample() {
 }
 
 func RunTypeSwitchExample() {
-	human := NewHuman("Xavier")
+	human := newHuman("Xavier")
 
 	switch t := human.(type) {
 	case *Man:
