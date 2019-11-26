@@ -1,4 +1,4 @@
-package main
+package context
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func main() {
+func RunTimeoutExample() {
 	timeout := time.Second * 3
 	ctx, _ := context.WithTimeout(context.Background(), timeout)
 	start := time.Now()
@@ -47,5 +47,6 @@ func main() {
 			}
 		}
 	}(ctx, &wg, start)
+
 	wg.Wait()
 }

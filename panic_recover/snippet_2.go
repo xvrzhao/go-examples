@@ -1,4 +1,4 @@
-package main
+package panic_recover
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func main() {
+func RunSnippet2() {
 	run()
 }
 

@@ -1,8 +1,8 @@
-package main
+package panic_recover
 
 import "fmt"
 
-func main() {
+func RunSnippet1() {
 	a()
 	fmt.Println("The program is finished.")
 }
