@@ -1,6 +1,6 @@
 # Golang Snippets
 
-Some Go snippets I wrote for learning, practice and memorization.
+Some Go snippets I wrote which are classical, general-usage or explanatory-sense for learning, practice and memorization.
 
 ## Installation
 
