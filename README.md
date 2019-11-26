@@ -1,14 +1,14 @@
-# golang-snippets
+# Golang Snippets
 
-Some Go snippets for learning, practice and memorization.
+Some Go snippets I wrote for learning, practice and memorization.
 
-## installation
+## Installation
 
 ```bash
 $ go get -d github.com/xvrzhao/golang-snippets
 ```
 
-## run examples
+## Run Examples
 
 ```bash
 $ cd $GOPATH/src/gtihub.com/xvrzhao/golang-snippets
