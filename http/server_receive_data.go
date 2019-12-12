@@ -155,6 +155,7 @@ func RunServerReceiveMultiExample(addr string) {
 			log.Printf("failed to open file: %v", err)
 			return
 		}
+		defer srcFile.Close()
 
 		dstFile, err := os.Create("./" + fileHeader.Filename) // if filename is relative path, then that path is relative to pwd in which exec the bin
 		if err != nil {
@@ -162,6 +163,7 @@ func RunServerReceiveMultiExample(addr string) {
 			log.Printf("failed to create dst file: %v", err)
 			return
 		}
+		defer dstFile.Close()
 
 		_, err = io.Copy(dstFile, srcFile)
 		if err != nil {
