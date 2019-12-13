@@ -1,7 +1,6 @@
 # Golang Snippets
 
-Some Go snippets I wrote which are classical, general-usage or explanatory-sense for learning, practice and memorization.
-
+Here are some Go code snippets that I wrote, which are classic, general usage, or explanatory.
 ## Installation
 
 ```bash
