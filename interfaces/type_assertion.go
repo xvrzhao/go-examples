@@ -1,30 +1,12 @@
 package interfaces
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
-type Human interface {
-	Speak()
-}
-
-type Man struct {
-	Name string
-}
-
-func (m *Man) Speak() {
-	fmt.Printf("Hello, my name is %s", m.Name)
-}
-
-type Girl struct {
-	Gender string
-}
-
-func (g *Girl) Speak() {}
-
-func newHuman(name string) Human {
-	return &Man{Name: name}
-}
-
-func RunTypeAssertionExample() {
+// determine the underlying struct type of the interface value
+func RunTypeAssertionExample1() {
 	human := newHuman("Xavier")
 
 	/*
@@ -58,26 +40,12 @@ func RunTypeAssertionExample() {
 	}
 }
 
-func RunTypeSwitchExample() {
+// determine if the underlying struct of a interface value implements other interfaces
+func RunTypeAssertionExample2() {
 	human := newHuman("Xavier")
-
-	switch t := human.(type) {
-	case *Man:
-		fmt.Println("*Man", t.Name)
-	case *Girl:
-		fmt.Println("*Girl", t.Gender)
-	default:
-		fmt.Println("human is not *Man or *Girl")
-	}
-
-	// fmt.Println(t) // can not use t outside the switch scope
-
-	switch human.(type) {
-	case *Man:
-		// todo
-	case *Girl:
-		// todo
-	default:
-		// todo
+	if animal, ok := human.(Animal); ok {
+		animal.Walk()
+	} else {
+		log.Println("human is not Animal")
 	}
 }
