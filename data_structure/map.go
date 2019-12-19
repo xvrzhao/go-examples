@@ -37,8 +37,8 @@ type Age struct {
 	value int
 }
 
-// value of the key in map is not addressable, so when value stores the struct type or array type,
-// you can not change element of that value directly. So, usually we set value's type in map to struct pointer,
+// value of the key in map is not addressable, so when value stores the struct type value or array type value,
+// you can not change fields/elements of that value directly. So, usually we set value's type in map to struct pointer,
 // array pointer, slice, or map.
 func RunMapNotAddressable() {
 	m := map[string]Age{
@@ -48,7 +48,7 @@ func RunMapNotAddressable() {
 
 	//m["xavier"].value = 10 // compile error: cannot assign to struct field m["xavier"].value in map
 
-	// change value of the key in map
+	// change fields of struct value in a map
 	xavier := m["xavier"]
 	xavier.value = 10
 	m["xavier"] = xavier
@@ -57,7 +57,7 @@ func RunMapNotAddressable() {
 }
 
 func RunMapAddressable() {
-	// value of the key in map stores pointer of the struct
+	// when the type of value in a map is a reference type
 	m := map[string]*Age{
 		"xavier": &Age{value: 23},
 	}
