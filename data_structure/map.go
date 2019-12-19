@@ -65,3 +65,31 @@ func RunMapAddressable() {
 	m["xavier"].value = 10
 	fmt.Println(m["xavier"])
 }
+
+func RunMapIterate() {
+	m := map[string]string{
+		"a": "1",
+		"b": "2",
+		"c": "3",
+		"d": "4",
+		"e": "5",
+		"f": "6",
+	}
+
+	for i := 0; i < 5; i++ {
+
+		// do both add and delete when iterate a map, the result will be unknown
+		for k, v := range m {
+			m[v] = k
+			delete(m, k)
+		}
+
+		fmt.Println(m)
+	}
+	// stdout:
+	// map[1:a 2:b 3:c 4:d 5:e 6:f]
+	// map[2:b a:1 c:3 d:4 e:5 f:6]
+	// map[3:c 4:d 5:e 6:f a:1 b:2]
+	// map[1:a 2:b 6:f c:3 d:4 e:5]
+	// map[3:c 4:d a:1 b:2 e:5 f:6]
+}
