@@ -6,5 +6,5 @@ import (
 
 func main() {
 	// run examples here
-	interfaces.RunTypeAssertionExample2()
+	interfaces.RunAssignExample()
 }

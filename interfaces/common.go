@@ -6,7 +6,15 @@ type Human interface {
 	Speak()
 }
 
+type Speaker interface {
+	Speak()
+}
+
 type Animal interface {
+	Walk()
+}
+
+type Walker interface {
 	Walk()
 }
 
@@ -31,3 +39,5 @@ func (g *Girl) Speak() {}
 func newHuman(name string) Human {
 	return &Man{Name: name}
 }
+
+func use(...interface{}) {}
