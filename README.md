@@ -1,6 +1,7 @@
 # Golang Snippets
 
-Here are some Go code snippets that I wrote, which are classic, general usage, or explanatory.
+Here are some Go snippets that I picked, which are classic, idiomatic, or explanatory.
+
 ## Installation
 
 ```bash
