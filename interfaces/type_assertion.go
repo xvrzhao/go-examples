@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// determine the underlying struct type of the interface value
+// RunTypeAssertionExample1 demonstrates how to determine the underlying struct type of a interface value.
 func RunTypeAssertionExample1() {
 	human := newHuman("Xavier")
 
@@ -40,7 +40,7 @@ func RunTypeAssertionExample1() {
 	}
 }
 
-// determine if the underlying struct of a interface value implements other interfaces
+// RunTypeAssertionExample2 demonstrates that how to determine if the underlying struct of a interface value implements other interfaces.
 func RunTypeAssertionExample2() {
 	human := newHuman("Xavier")
 	if animal, ok := human.(Animal); ok { // the left of type assertion must be interface type

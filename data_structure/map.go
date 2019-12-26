@@ -37,9 +37,10 @@ type Age struct {
 	value int
 }
 
-// value of the key in map is not addressable, so when value stores the struct type value or array type value,
-// you can not change fields/elements of that value directly. So, usually we set value's type in map to struct pointer,
-// array pointer, slice, or map.
+// RunMapNotAddressable demonstrates that a map's v(value) are not addressable.
+//
+// When a v stores the struct type or array type, you can not change fields/elements of that value directly.
+// Therefore, usually a map's v just stores a reference type like struct pointer, array pointer, slice, or map.
 func RunMapNotAddressable() {
 	m := map[string]Age{
 		"xavier": Age{value: 23},

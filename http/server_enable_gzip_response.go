@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-// response with gzip encoding
+// RunServerEnableGzip demonstrates how a HTTP server responses with gzip encoding.
 func RunServerEnableGzip(addr string) {
 	serveMux.HandleFunc("/test/gzip", func(writer http.ResponseWriter, request *http.Request) {
 		msg := []byte("Hello, Gzip!")

@@ -11,11 +11,9 @@ import (
 
 var serveMux *http.ServeMux
 
-// how http server receive query string data
-//
-// try after server served:
-//
-// GET /test/qs?age=23&name=xavier HTTP/1.1
+// RunServerReceiveQsExample demonstrates how a HTTP server receives query string data.
+// Take a try after the service starts:
+//    GET /test/qs?age=23&name=xavier HTTP/1.1
 func RunServerReceiveQsExample(addr string) {
 	serveMux.HandleFunc("/test/qs", func(writer http.ResponseWriter, request *http.Request) {
 		// the Form and PostForm field of Request is only available after ParseForm called
@@ -44,15 +42,13 @@ func RunServerReceiveQsExample(addr string) {
 	}
 }
 
-// how http server receive application/x-www-form-urlencoded data
+// RunServerReceiveFormExample demonstrate how a HTTP server receives "application/x-www-form-urlencoded" data.
+// Take a try after the service starts:
+//    POST /test/form HTTP/1.1
+//    Content-Type: application/x-www-form-urlencoded
+//    Content-Length: 18
 //
-// try after server served:
-//
-// POST /test/form HTTP/1.1
-// Content-Type: application/x-www-form-urlencoded
-// Content-Length: 18
-//
-// name=xavier&age=23
+//    name=xavier&age=23
 func RunServerReceiveFormExample(addr string) {
 	serveMux.HandleFunc("/test/form", func(writer http.ResponseWriter, request *http.Request) {
 		// the Form and PostForm field of Request is only available after ParseForm called
@@ -81,15 +77,13 @@ func RunServerReceiveFormExample(addr string) {
 	}
 }
 
-// how http server receive application/json data
+// RunServerReceiveJsonExample demonstrates how a HTTP server receives "application/json" data.
+// Take a try after the service starts:
+//    POST /test/json HTTP/1.1
+//    Content-Type: application/json
+//    Content-Length: 29
 //
-// try after the server served:
-//
-// POST /test/json HTTP/1.1
-// Content-Type: application/json
-// Content-Length: 29
-//
-// {"name": "Saudade","age": 23}
+//    {"name": "Saudade","age": 23}
 func RunServerReceiveJsonExample(addr string) {
 	serveMux.HandleFunc("/test/json", func(writer http.ResponseWriter, request *http.Request) {
 		jsonBytes, err := ioutil.ReadAll(request.Body)
@@ -113,27 +107,25 @@ func RunServerReceiveJsonExample(addr string) {
 	}
 }
 
-// how http server receive multipart/form-data data (receive uploaded file)
-//
-// try: (send a field foo=bar and a file)
-//
-// POST /test/multi HTTP/1.1
-// Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-// Content-Length: 56442
+// RunServerReceiveMultiExample demonstrates how a HTTP server receives "multipart/form-data" data (uploaded files).
+// Take a try (send a field "foo=bar" and a file) after the service starts:
+//    POST /test/multi HTTP/1.1
+//    Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+//    Content-Length: 56442
 //
 //
-// Content-Disposition: form-data; name="foo"
+//    Content-Disposition: form-data; name="foo"
 //
-// bar
-// ------WebKitFormBoundary7MA4YWxkTrZu0gW--,
-// Content-Disposition: form-data; name="foo"
+//    bar
+//    ------WebKitFormBoundary7MA4YWxkTrZu0gW--,
+//    Content-Disposition: form-data; name="foo"
 //
-// bar
-// ------WebKitFormBoundary7MA4YWxkTrZu0gW--
-// Content-Disposition: form-data; name="avatarFile"; filename="/Users/xvrzhao/Pictures/avatars/ava.jpg
+//    bar
+//    ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+//    Content-Disposition: form-data; name="avatarFile"; filename="/Users/xvrzhao/Pictures/avatars/ava.jpg
 //
 //
-// ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+//    ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 func RunServerReceiveMultiExample(addr string) {
 	serveMux.HandleFunc("/test/multi", func(writer http.ResponseWriter, request *http.Request) {
 		// request.MultipartForm is available only when ParseMultipartForm has been called
