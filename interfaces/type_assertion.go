@@ -43,7 +43,7 @@ func RunTypeAssertionExample1() {
 // determine if the underlying struct of a interface value implements other interfaces
 func RunTypeAssertionExample2() {
 	human := newHuman("Xavier")
-	if animal, ok := human.(Animal); ok {
+	if animal, ok := human.(Animal); ok { // the left of type assertion must be interface type
 		animal.Walk()
 	} else {
 		log.Println("human is not Animal")
