@@ -6,5 +6,5 @@ import (
 
 func main() {
 	// run examples here
-	interfaces.RunAssignExample()
+	interfaces.RunAssignStruct()
 }

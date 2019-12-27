@@ -18,6 +18,11 @@ type Walker interface {
 	Walk()
 }
 
+type SpeakWalker interface {
+	Speak()
+	Walk()
+}
+
 type Man struct {
 	Name string
 }

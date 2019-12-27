@@ -1,6 +1,6 @@
 package interfaces
 
-func RunAssignExample() {
+func RunAssignStruct() {
 	var (
 		speaker Speaker
 		walker  Walker
@@ -16,4 +16,19 @@ func RunAssignExample() {
 	// speaker = man	 // invalid, compiler error, variable man does not implement the `Speak` method
 
 	use(speaker, walker)
+}
+
+// RunAssignInterface demonstrates that the success of the assignment between interfaces depends on
+// whether the interface has implemented methods, not whether the underlying type of interface has implemented those methods.
+func RunAssignInterface() {
+	var speaker Speaker
+	speaker = new(Man)
+
+	var speakWalker SpeakWalker
+	//speakWalker = speaker // invalid, compiler error, speaker can not be assigned to speakWalker because speaker does not implement speakWalker, even though the underlying struct *Man implements that.
+
+	speakWalker = new(Man)
+	speaker = speakWalker // valid.
+
+	use(speaker)
 }
