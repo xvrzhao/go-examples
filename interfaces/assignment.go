@@ -20,6 +20,8 @@ func RunAssignStruct() {
 
 // RunAssignInterface demonstrates that the success of the assignment between interfaces depends on
 // whether the interface has implemented methods, not whether the underlying type of interface has implemented those methods.
+//
+// But, the type assertion between interfaces just depends on whether the underlying type of left has implemented the methods of right.
 func RunAssignInterface() {
 	var speaker Speaker
 	speaker = new(Man)
