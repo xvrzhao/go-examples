@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/xvrzhao/golang-snippets/interfaces"
+	"github.com/xvrzhao/golang-snippets/data_structure"
 )
 
 func main() {
 	// run examples here
-	interfaces.RunAssignStruct()
+	data_structure.RunAppendSliceWithFunc()
 }
