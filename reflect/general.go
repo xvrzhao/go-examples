@@ -66,4 +66,8 @@ func RunSetStructExample() {
 	if tellName.IsValid() {
 		tellName.Call(nil) // Xavier
 	}
+
+	tellGender := v.MethodByName("tellGender")
+	grow := v.MethodByName("Grow")
+	fmt.Println(tellGender.IsValid(), grow.IsValid()) // false false
 }
