@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/xvrzhao/golang-snippets/reflect"
+	"github.com/xvrzhao/golang-snippets/data_structure"
 )
 
 func main() {
 	// run examples here
-	reflect.RunSetStructExample()
+	data_structure.RunArrayAddressExample()
 }
