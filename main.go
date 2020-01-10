@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/xvrzhao/golang-snippets/data_structure"
+	"github.com/xvrzhao/golang-snippets/signal"
 )
 
 func main() {
 	// run examples here
-	data_structure.RunArrayAddressExample()
+	signal.RunReceiveInterruptSignal()
 }
