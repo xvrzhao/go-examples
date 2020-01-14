@@ -38,7 +38,7 @@ func IntRace2() {
 	fmt.Println(num) // num will be less than 1000
 }
 
-// IntAtomic demonstrates the one of concurrency-safe scenarios of int value.
+// IntAtomic demonstrates the concurrency-safe version of IntRace1.
 // Run the following command under the project root directory to test race:
 //   $ go test -race -run=IntAtomic -v -count=1 ./race
 func IntAtomic() {
