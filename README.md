@@ -1,21 +1,19 @@
-# Golang Snippets
+# Go Examples
 
-Here are some Go snippets that I picked, which are classic, idiomatic, or explanatory.
+Here are some Go examples I picked, which are classic, idiomatic, or explanatory.
 
-## Installation
+## Read on GoDoc
 
-Run the following command outside the Go Modules.
 
-```bash
-$ go get -d github.com/xvrzhao/golang-snippets
-```
+## Pull the Source Code
 
-## Run Examples
+Run the following commands outside the Go Modules.
 
 ```bash
-$ cd $GOPATH/src/gtihub.com/xvrzhao/golang-snippets
-
-$ go run main.go
+$ go get github.com/xvrzhao/go-examples
+$ cd $GOPATH/src/gtihub.com/xvrzhao/go-examples
 ```
-
-Edit the code within function `main` in `main.go` file to run the examples you want to run.
+Or
+```bash
+$ git clone git@github.com:xvrzhao/go-examples.git
+```

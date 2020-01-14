@@ -13,3 +13,11 @@ func TestIntRace2(t *testing.T) {
 func TestIntAtomic(t *testing.T) {
 	IntAtomic()
 }
+
+func TestStringRace(t *testing.T) {
+	StringRace()
+}
+
+func TestBoolRace(t *testing.T) {
+	BoolRace()
+}

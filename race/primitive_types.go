@@ -52,3 +52,37 @@ func IntAtomic() {
 	<-done
 	fmt.Println(i)
 }
+
+// StringRace demonstrates data races between two goroutines.
+// Run the following command under the project root directory to test race:
+//   $ go test -race -run=StringRace -v -count=1 ./race
+func StringRace() {
+	var s string
+	done := make(chan bool)
+
+	go func() {
+		s = "foo"
+		done <- true
+	}()
+
+	s = "bar"
+	<-done
+	fmt.Println(s)
+}
+
+// BoolRace demonstrates data races between two goroutines.
+// Run the following command under the project root directory to test race:
+//   $ go test -race -run=BoolRace -v -count=1 ./race
+func BoolRace() {
+	var s bool
+	done := make(chan bool)
+
+	go func() {
+		s = true
+		done <- true
+	}()
+
+	s = false
+	<-done
+	fmt.Println(s)
+}
