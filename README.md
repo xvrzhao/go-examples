@@ -2,18 +2,18 @@
 
 Here are some Go examples I picked, which are classic, idiomatic, or explanatory.
 
-## Read on GoDoc
-
-
 ## Pull the Source Code
 
-Run the following commands outside the Go Modules.
-
-```bash
-$ go get github.com/xvrzhao/go-examples
-$ cd $GOPATH/src/gtihub.com/xvrzhao/go-examples
-```
-Or
 ```bash
 $ git clone git@github.com:xvrzhao/go-examples.git
 ```
+
+## View the Source Code and Documentation
+
+Locally, if you installed [godoc](https://github.com/golang/tools), run the following command under the project root directory, then open [this link](http://localhost:6060/pkg/github.com/xvrzhao/go-examples/).
+
+```bash
+$ godoc -http=:6060
+```
+
+Alternatively, view on [GoDoc](https://godoc.org/github.com/xvrzhao/go-examples) directly without pulling the source code, but then you can't run tests.
