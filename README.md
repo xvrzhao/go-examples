@@ -1,5 +1,7 @@
 # Go Examples
 
+[![GoDoc](https://godoc.org/github.com/xvrzhao/go-examples?status.svg)](https://godoc.org/github.com/xvrzhao/go-examples)
+
 Here are some Go examples I picked, which are classic, idiomatic, or explanatory.
 
 ## Pull the Source Code
