@@ -18,7 +18,7 @@ import (
 //
 // 直接打印字符串变量的地址其实是打印的 StringHeader 结构体的地址，字符串内存的真实地址为 Data 字段的值。
 //
-// TODO: 翻译成英文。
+// TODO: Translate to English.
 func StringHeader() {
 	s := "xavier"
 
@@ -30,6 +30,8 @@ func StringHeader() {
 
 // String2Bytes 演示了使用 unsafe 的方法将字符串转为字节切片。
 // 因为 字符串内部结构 (reflect.StringHeader) 和切片的内部结构 (reflect.SliceHeader) 存在不同，直接转会出现问题。
+//
+// TODO: Translate to English.
 func String2Bytes() {
 	s := "xavier"
 
