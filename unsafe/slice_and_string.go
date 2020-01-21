@@ -3,6 +3,7 @@ package unsafe
 import (
 	"fmt"
 	"reflect"
+	"strings"
 	"unsafe"
 )
 
@@ -59,6 +60,8 @@ func String2Bytes() {
 // ReadOnlyBytes 演示了只读的 bytes 切片。
 // 通过字面量初始化的字符串，编译时会将内存设为只读，即使转换为 bytes 类型也不可
 // 操控这部分内存，否则会抛出致命错误，无法通过 recover 捕获。
+//
+// TODO: Translate to English.
 func ReadOnlyBytes() {
 	s := "xavier"
 	b := *(*[]byte)(unsafe.Pointer(&struct {
@@ -67,4 +70,32 @@ func ReadOnlyBytes() {
 	}{s, len(s)}))
 	b[0] = 0x61 // throw fatal error
 	fmt.Println(s, b)
+}
+
+func unsafe2Bytes(s string) []byte {
+	return *(*[]byte)(unsafe.Pointer(&struct {
+		string
+		Cap int
+	}{s, len(s)}))
+}
+
+// StringIsReferenceType 演示了 string 其实也是引用类型。
+// string 类型的内部结构为 reflect.StringHeader，其中 Data 字段代表了
+// 字符串的真实内存地址，而 string/stringHeader 只是一个引用值。
+//
+// Go 中函数参数都是按值传递的，代码中将字符串 s 传递给函数 unsafe2Bytes 相当于 copy 了一个字符串给函数，
+// 因此按照普通思维，你可能会认为在函数内部的行为不会反应到外部的 s 上，函数返回的 bytes 也只是新的一块内存罢了，
+// 但是结果却是，返回的 bytes 和 s 指向同一块内存区域。
+//
+// 这是因为 string 只是一个引用 (reflect.StringHeader)，类似于 slice，函数传递的 s 的确是传递了一个 s 的 copy，
+// 但是这个 copy 中的 Data 字段依然是底层字符串的地址，所以返回的 bytes 也是根据这个地址生成的一个 slice，他们共享
+// 一块内存区域。
+//
+// TODO: Translate to English.
+func StringIsReferenceType() {
+	s := strings.Repeat("a", 3) // s: aaa
+	b := unsafe2Bytes(s)
+	b[1] = 98
+	b[2] = 99
+	fmt.Println(s, b) // abc [97 98 99]
 }

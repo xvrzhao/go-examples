@@ -13,3 +13,7 @@ func TestString2Bytes(t *testing.T) {
 func TestReadOnlyBytes(t *testing.T) {
 	ReadOnlyBytes()
 }
+
+func TestStringIsReferenceType(t *testing.T) {
+	StringIsReferenceType()
+}
