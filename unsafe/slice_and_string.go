@@ -22,8 +22,34 @@ import (
 func StringHeader() {
 	s := "xavier"
 
-	fmt.Printf("%p\n", &s) // 0xc000090490，StringHeader 结构体地址
-	fmt.Println(uintptr(unsafe.Pointer(&s))) // 824634311824 == 0xc000090490，StringHeader 结构体地址
+	fmt.Printf("%p\n", &s)                                                // 0xc000090490，StringHeader 结构体地址
+	fmt.Println(uintptr(unsafe.Pointer(&s)))                              // 824634311824 == 0xc000090490，StringHeader 结构体地址
 	fmt.Printf("%p\n", &(*reflect.StringHeader)(unsafe.Pointer(&s)).Data) // 0xc000090490，StringHeader 结构体第一个字段的地址，也是 StringHeader 结构体地址
-	fmt.Println((*reflect.StringHeader)(unsafe.Pointer(&s)).Data) // 18791723，底层字符串真实的内存地址
+	fmt.Println((*reflect.StringHeader)(unsafe.Pointer(&s)).Data)         // 18791723，底层字符串真实的内存地址
+}
+
+// String2Bytes 演示了使用 unsafe 的方法将字符串转为字节切片。
+// 因为 字符串内部结构 (reflect.StringHeader) 和切片的内部结构 (reflect.SliceHeader) 存在不同，直接转会出现问题。
+func String2Bytes() {
+	s := "xavier"
+
+	// 直接转，将导致 sliceHeader 缺少 Cap 字段，读取到的 cap 值是 Len 字段后的内存中的值，存在不确定性。
+	b1 := *(*[]byte)(unsafe.Pointer(&s))
+	fmt.Println(len(b1), cap(b1)) // 6 17740064
+
+	// 提取出 stringHeader 的字段，来构造 sliceHeader，再转为 []byte。
+	sh := (*reflect.StringHeader)(unsafe.Pointer(&s))
+	b2 := *(*[]byte)(unsafe.Pointer(&reflect.SliceHeader{
+		Data: sh.Data,
+		Len:  sh.Len,
+		Cap:  sh.Len,
+	}))
+	fmt.Println(len(b2), cap(b2)) // 6 6
+
+	// 构造一个匿名结构体，继承 string 的两个字段后再添加一个 Cap 属性，来模拟 sliceHeader。
+	b3 := *(*[]byte)(unsafe.Pointer(&struct {
+		string // 包含 Data 和 Len
+		Cap    int
+	}{s, len(s)}))
+	fmt.Println(len(b3), cap(b3)) // 6 6
 }
