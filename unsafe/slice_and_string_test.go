@@ -9,3 +9,7 @@ func TestStringHeader(t *testing.T) {
 func TestString2Bytes(t *testing.T) {
 	String2Bytes()
 }
+
+func TestReadOnlyBytes(t *testing.T) {
+	ReadOnlyBytes()
+}

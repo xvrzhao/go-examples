@@ -55,3 +55,16 @@ func String2Bytes() {
 	}{s, len(s)}))
 	fmt.Println(len(b3), cap(b3)) // 6 6
 }
+
+// ReadOnlyBytes 演示了只读的 bytes 切片。
+// 通过字面量初始化的字符串，编译时会将内存设为只读，即使转换为 bytes 类型也不可
+// 操控这部分内存，否则会抛出致命错误，无法通过 recover 捕获。
+func ReadOnlyBytes() {
+	s := "xavier"
+	b := *(*[]byte)(unsafe.Pointer(&struct {
+		string
+		Cap int
+	}{s, len(s)}))
+	b[0] = 0x61 // throw fatal error
+	fmt.Println(s, b)
+}
