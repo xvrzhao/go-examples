@@ -17,3 +17,7 @@ func TestReadOnlyBytes(t *testing.T) {
 func TestStringIsReferenceType(t *testing.T) {
 	StringIsReferenceType()
 }
+
+func TestBytes2String(t *testing.T) {
+	Bytes2String()
+}

@@ -99,3 +99,20 @@ func StringIsReferenceType() {
 	b[2] = 99
 	fmt.Println(s, b) // abc [97 98 99]
 }
+
+// Bytes2String 演示了使用 unsafe 方法将 bytes 转为 string。
+// 转换之后的 bytes 和 string 指向同一块内存区域。
+//
+// 因为 reflect.StringHeader 的两个字段 (Data 和 Len) 与 reflect.SliceHeader 是对齐的，
+// 所以转换时不需要另外增加字段。
+//
+// TODO: Translate to English.
+func Bytes2String() {
+	b := []byte{0x61, 0x62, 0x63}
+
+	s := *(*string)(unsafe.Pointer(&b))
+	fmt.Println(s, len(s)) // abc 3
+
+	b[0] = 0x64
+	fmt.Println(s) // dbc
+}
