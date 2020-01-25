@@ -23,10 +23,10 @@ import (
 func StringHeader() {
 	s := "xavier"
 
-	fmt.Printf("%p\n", &s)                                                // 0xc000090490，StringHeader 结构体地址
-	fmt.Println(uintptr(unsafe.Pointer(&s)))                              // 824634311824 == 0xc000090490，StringHeader 结构体地址
-	fmt.Printf("%p\n", &(*reflect.StringHeader)(unsafe.Pointer(&s)).Data) // 0xc000090490，StringHeader 结构体第一个字段的地址，也是 StringHeader 结构体地址
-	fmt.Println((*reflect.StringHeader)(unsafe.Pointer(&s)).Data)         // 18791723，底层字符串真实的内存地址
+	fmt.Printf("%p\n", &s)                                                 // 0xc0000764e0，StringHeader 结构体地址
+	fmt.Printf("0x%x\n", uintptr(unsafe.Pointer(&s)))                      // 0xc0000764e0，StringHeader 结构体地址
+	fmt.Printf("%p\n", &(*reflect.StringHeader)(unsafe.Pointer(&s)).Data)  // 0xc0000764e0，StringHeader 结构体第一个字段的地址，也是 StringHeader 结构体地址
+	fmt.Printf("0x%x\n", (*reflect.StringHeader)(unsafe.Pointer(&s)).Data) // 0x1148654，底层字符串真实的内存地址
 }
 
 // String2Bytes 演示了使用 unsafe 的方法将字符串转为字节切片。
