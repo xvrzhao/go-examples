@@ -5,6 +5,10 @@ import (
 	"testing"
 )
 
+func TestStructOffsetField(t *testing.T) {
+	StructOffsetField()
+}
+
 func TestPerson2Bytes(t *testing.T) {
 	p := Person{
 		Name: "xavier",

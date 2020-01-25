@@ -1,6 +1,7 @@
 package unsafe
 
 import (
+	"fmt"
 	"reflect"
 	"unsafe"
 )
@@ -8,6 +9,14 @@ import (
 type Person struct {
 	Name string
 	Age  int
+}
+
+// StructOffsetField 演示了获取结构体字段的三种不同方式。
+func StructOffsetField() {
+	p := Person{}
+	fmt.Printf("%p \n", &p.Age)                                               // 0xc00000c090
+	fmt.Printf("0x%x \n", uintptr(unsafe.Pointer(&p.Age)))                    // 0xc00000c090
+	fmt.Printf("0x%x \n", uintptr(unsafe.Pointer(&p))+unsafe.Offsetof(p.Age)) // 0xc00000c090
 }
 
 // Person2Bytes 将 Person 结构体转为 bytes。
