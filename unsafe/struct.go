@@ -42,6 +42,12 @@ func Person2Bytes(p *Person) []byte {
 //
 // TODO: Translate to English.
 func Bytes2Person(b []byte) *Person {
-	personAddress := (*reflect.SliceHeader)(unsafe.Pointer(&b)).Data
-	return (*Person)(unsafe.Pointer(personAddress))
+
+	// 以下为错误的方式，执行 go vet 将提示 possible misuse of unsafe.Pointer
+	// 不能以中间变量的形式存储 uintptr 值，防止其值表示的内存地址被 GC
+	//
+	//personAddress := (*reflect.SliceHeader)(unsafe.Pointer(&b)).Data // 此步拿到字节数组地址，但是 b 不再被使用，很可能被 GC，此后 personAddress 表示的地址不再有意义
+	//return (*Person)(unsafe.Pointer(personAddress))
+
+	return (*Person)(unsafe.Pointer((*reflect.SliceHeader)(unsafe.Pointer(&b)).Data))
 }
