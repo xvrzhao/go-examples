@@ -2,20 +2,20 @@
 
 [![GoDoc](https://godoc.org/github.com/xvrzhao/go-examples?status.svg)](https://godoc.org/github.com/xvrzhao/go-examples)
 
-Here are some Go examples I picked, which are classic, idiomatic, or explanatory.
+一些经过整理的、经典的、惯用的或解释性的 Go 代码片段。
 
-## Pull the Source Code
+## 拉取源码
 
 ```bash
 $ git clone git@github.com:xvrzhao/go-examples.git
 ```
 
-## View the Source Code and Documentation
+## 以文档的方式阅读代码
 
-Locally, if you installed [godoc](https://github.com/golang/tools), run the following command under the project root directory, then open [this link](http://localhost:6060/pkg/github.com/xvrzhao/go-examples/).
+如果你本地安装了 [godoc](https://github.com/golang/tools)，则在项目根目录执行以下命令，然后打开 [链接](http://localhost:6060/pkg/github.com/xvrzhao/go-examples/)。
 
 ```bash
 $ godoc -http=:6060
 ```
 
-Alternatively, view on [GoDoc](https://godoc.org/github.com/xvrzhao/go-examples) directly without pulling the source code, but then you can't run tests.
+或者在 [GoDoc](https://godoc.org/github.com/xvrzhao/go-examples) 阅读，这样可以不用拉取源码，但也不能运行单元测试查看代码运行效果。
