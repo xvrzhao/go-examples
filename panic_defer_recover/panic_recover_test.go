@@ -1,4 +1,4 @@
-package panic_recover
+package panic_defer_recover
 
 import "testing"
 
