@@ -49,7 +49,7 @@ func deferTrap1() {
 	y = 4
 }
 
-// FIFO
+// LIFO
 
 func deferTrap2() {
 	defer fmt.Print("Xavier Zhao.\n")
