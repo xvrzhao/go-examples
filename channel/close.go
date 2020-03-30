@@ -42,3 +42,29 @@ func CloseAChannel() {
 
 	wg.Wait()
 }
+
+// RetrieveItemFromClosedChannel demonstrates that when receiving a value
+// from a closed channel, a zero-value is received.
+func RetrieveItemFromClosedChannel() {
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	ch := make(chan int)
+
+	go func(chan int) {
+		defer wg.Done()
+		for i := 1; i <= 3; i++ {
+			ch <- i
+		}
+		close(ch) // close the channel when number 1~3 have been sent to it
+	}(ch)
+
+	go func(chan int) {
+		defer wg.Done()
+		for i := 0; i < 5; i++ {
+			fmt.Printf("%d ", <-ch) // 1 2 3 0 0
+		}
+	}(ch)
+
+	wg.Wait()
+}
