@@ -1,4 +1,4 @@
-package race
+package race_and_sync
 
 import "testing"
 
