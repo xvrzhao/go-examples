@@ -13,11 +13,11 @@ func RunReceiveInterruptSignal() {
 
 	done := make(chan int)
 	go func(done chan<- int) {
-		sig := <- signalChannel
+		sig := <-signalChannel
 		fmt.Printf("receive signal: %v\n", sig)
 		done <- 1
 	}(done)
 
 	fmt.Println("waiting signal...")
-	<- done
+	<-done
 }
