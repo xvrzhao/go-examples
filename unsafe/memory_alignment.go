@@ -37,14 +37,53 @@ func Sizeof() {
 	)
 
 	// slice is underlying type reflect.SliceHeader, though s is not allocated memory (s == nil)
-	var s0 []int8
-	var s1 []int16
+	var (
+		s0 []int8
+		s1 []int16
+	)
 	fmt.Println(
 		unsafe.Sizeof(s0),                 // 24 uintptr + int + int
 		unsafe.Sizeof(s1),                 // 24
 		unsafe.Sizeof([]int8{}),           // 24
 		unsafe.Sizeof([]int8{0, 1, 2, 3}), // 24
 	)
+
+	// array
+	var (
+		arr1 [3]uint32 // 4 * 3
+		arr2 [5][]bool // 24 * 5
+	)
+	fmt.Println(unsafe.Sizeof(arr1), unsafe.Sizeof(arr2)) // 12 120
+
+	// unsafe.Pointer
+	fmt.Println(unsafe.Sizeof(unsafe.Pointer(&arr1))) // 8
+
+	// map is a pointer to underlying type runtime.hmap, so a map variable(a pointer) is 8 bytes
+	var m1 map[string]int
+	m2 := make(map[string]int, 100)
+	fmt.Println(unsafe.Sizeof(m1), unsafe.Sizeof(m2)) // 8 8
+
+	// interface, a interface variable is a underlying type runtime.iface while
+	// a empty interface is a underlying type runtime.eface, iface and eface are
+	// structs with 2 pointer-type fields.
+	//
+	//   type iface struct {
+	//   	tab  *itab
+	//   	data unsafe.Pointer
+	//   }
+	//
+	//   type eface struct {
+	//   	_type *_type
+	//   	data  unsafe.Pointer
+	//   }
+	type myInterface interface {
+		DoSth()
+	}
+	var (
+		mi myInterface
+		ei interface{}
+	)
+	fmt.Println(unsafe.Sizeof(mi), unsafe.Sizeof(ei)) // 16 16
 }
 
 // StructCompare 示例说明了：具有相同字段的结构体，不同的字段排序方式，所产生的内存占用不同，
