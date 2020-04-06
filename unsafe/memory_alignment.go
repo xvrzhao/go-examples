@@ -50,11 +50,15 @@ func Sizeof() {
 // StructCompare 示例说明了：具有相同字段的结构体，不同的字段排序方式，所产生的内存占用不同，
 // 原因是由于结构体字段和结构体整体的对齐方式。
 //
-// 64 位平台的机器字长（CPU 一次可读入的字节数）为 8 字节，32 位平台为 4 字节。
+// 知识点：
+//   1. 64 位平台的机器字长（CPU 一次可读入的字节数）为 8 字节，32 位平台为 4 字节。
+//   2. 一个数据类型在对齐时，要保证其起始地址为其对齐值的整数倍。
+//   3. 结构体的字节长度为 最长字节的字段的对齐值(与结构体的对齐值相等，通过 unsafe.Alignof(结构体实例) 计算) 的最小整数倍。
 //
-// 结构体的字节长度为 最长字节的字段的对齐值(与结构体的对齐值相等，通过 unsafe.Alignof(结构体实例) 计算) 的最小整数倍。
-//
-// 参考链接：https://www.jianshu.com/p/49f7e6f56568
+// 参考链接：
+//   - https://www.jianshu.com/p/49f7e6f56568
+//   - https://www.bilibili.com/video/BV1iZ4y1j7TT
+//   - https://github.com/talk-go/night/issues/588
 func StructCompare() {
 	type S1 struct {
 		a int8  // 1 0 0 0 0 0 0 0
