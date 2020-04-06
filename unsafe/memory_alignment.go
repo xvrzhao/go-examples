@@ -7,6 +7,7 @@ import (
 
 // Note: All annotations are results of execution under 64-bit platform.
 
+// Sizeof prints memory size of all go types under 64-bit platform.
 func Sizeof() {
 	// int
 	fmt.Println(
@@ -90,9 +91,11 @@ func Sizeof() {
 // 原因是由于结构体字段和结构体整体的对齐方式。
 //
 // 知识点：
-//   1. 64 位平台的机器字长（CPU 一次可读入的字节数）为 8 字节，32 位平台为 4 字节。
+//   1. 64 位平台的机器字长（CPU 一次读入的字节数）为 8 字节，32 位平台为 4 字节。
 //   2. 一个数据类型在对齐时，要保证其起始地址为其对齐值的整数倍。
-//   3. 结构体的字节长度为 最长字节的字段的对齐值(与结构体的对齐值相等，通过 unsafe.Alignof(结构体实例) 计算) 的最小整数倍。
+//   3. 所有类型的对齐值可以通过 unsafe.Alignof 计算，array 类型的对齐值为其元素的对齐值，
+//      struct 类型的对齐值为其最长字节的字段的对齐值。
+//   4. 结构体所占的字节长度需为其对齐值的整数倍（据此来推算结构体最后需要多少个字节的 padding）。
 //
 // 参考链接：
 //   - https://www.jianshu.com/p/49f7e6f56568
