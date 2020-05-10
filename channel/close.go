@@ -51,7 +51,7 @@ func RetrieveItemFromClosedChannel() {
 
 	ch := make(chan int)
 
-	go func(chan int) {
+	go func(ch chan int) {
 		defer wg.Done()
 		for i := 1; i <= 3; i++ {
 			ch <- i
@@ -59,7 +59,7 @@ func RetrieveItemFromClosedChannel() {
 		close(ch) // close the channel when number 1~3 have been sent to it
 	}(ch)
 
-	go func(chan int) {
+	go func(ch chan int) {
 		defer wg.Done()
 		for i := 0; i < 5; i++ {
 			fmt.Printf("%d ", <-ch) // 1 2 3 0 0
