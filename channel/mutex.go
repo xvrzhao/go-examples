@@ -17,5 +17,8 @@ func (m *mutex) Lock() {
 }
 
 func (m *mutex) Unlock() {
+	if m.ch == nil || len(m.ch) == 0 {
+		panic("unlock on an unlocked mutex")
+	}
 	<-m.ch
 }

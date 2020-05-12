@@ -43,9 +43,6 @@ func TestMutex(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		sum1 := calculateWithoutMutex()
 		sum2 := calculateWithMutex()
-		t.Logf("%d < %d", sum1, sum2)
-		if sum1 < sum2 {
-			return
-		}
+		t.Logf("without mutex: %d, with mutex: %d\n", sum1, sum2)
 	}
 }
