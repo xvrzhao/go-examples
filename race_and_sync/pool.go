@@ -49,7 +49,7 @@ func WithPool() {
 
 func init() {
 	pool = &sync.Pool{New: func() interface{} {
-		bs := make([]byte, 1<<20)
+		bs := make([]byte, numOfBytes)
 		return &bs
 	}}
 }

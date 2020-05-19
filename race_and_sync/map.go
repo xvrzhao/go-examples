@@ -7,7 +7,7 @@ import (
 
 // MapIsNonConcurrentSafe demonstrates that a plain map is not concurrency-safe.
 // Run the following command under the project root directory to test race:
-//   $ go test -race -run=MapIsNonConcurrencySafe ./race
+//   $ go test -race -run=MapIsNonConcurrencySafe ./race_and_sync
 func MapIsNonConcurrencySafe() {
 	m := make(map[int]int)
 	done := make(chan bool)
@@ -28,7 +28,7 @@ type myMap struct {
 
 // ConcurrencySafeMapWithLock demonstrates that a map with the lock is concurrency-safe.
 // Run the following command under the project root directory to test race:
-//   $ go test -race -run=ConcurrencySafeMapWithLock ./race
+//   $ go test -race -run=ConcurrencySafeMapWithLock ./race_and_sync
 func ConcurrencySafeMapWithLock() {
 	mm := new(myMap)
 	mm.m = make(map[int]int)
@@ -60,7 +60,7 @@ func ConcurrencySafeMapWithLock() {
 
 // SyncMapIsConcurrencySafe demonstrates that a sync.Map is concurrency-safe.
 // Run the following command under the project root directory to test race:
-//   $ go test -race -run=SyncMapIsConcurrencySafe ./race
+//   $ go test -race -run=SyncMapIsConcurrencySafe ./race_and_sync
 func SyncMapIsConcurrencySafe() {
 	m := new(sync.Map)
 	done := make(chan bool)

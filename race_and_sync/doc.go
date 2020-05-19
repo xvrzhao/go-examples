@@ -1,5 +1,5 @@
 /*
-Package race contains some demo functions of data races scenarios and the solutions for that.
+Package race_and_sync contains some demo functions of data races scenarios and the solutions for that.
 
 A data race occurs when two goroutines access the same variable concurrently and at least one
 of the accesses is a write.
