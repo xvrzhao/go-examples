@@ -1,6 +1,6 @@
 package data_structure
 
-// 二叉树节点
+// binaryTreeNode 是二叉树节点
 type binaryTreeNode struct {
 	value interface{}
 	left  *binaryTreeNode
@@ -11,7 +11,7 @@ func newBinaryTreeNode(v interface{}) *binaryTreeNode {
 	return &binaryTreeNode{value: v}
 }
 
-// CreateBinaryTree 创建二叉树
+// CreateBinaryTree 创建二叉树并返回根节点
 func CreateBinaryTree() (root *binaryTreeNode) {
 	root = newBinaryTreeNode("a")
 	b := newBinaryTreeNode("b")
@@ -44,7 +44,7 @@ func GetResultOrder() []interface{} {
 	return order
 }
 
-// PreOrder 前序遍历二叉树
+// BinaryTreePreOrderBinaryTree 根据根节点前序遍历二叉树
 func BinaryTreePreOrderBinaryTree(root *binaryTreeNode) {
 	order = append(order, root.value)
 
@@ -57,7 +57,7 @@ func BinaryTreePreOrderBinaryTree(root *binaryTreeNode) {
 	}
 }
 
-// BinaryTreeInOrder 中序遍历二叉树
+// BinaryTreeInOrder 根据根节点中序遍历二叉树
 func BinaryTreeInOrder(root *binaryTreeNode) {
 	if left := root.left; left != nil {
 		BinaryTreeInOrder(left)
@@ -70,7 +70,7 @@ func BinaryTreeInOrder(root *binaryTreeNode) {
 	}
 }
 
-// BinaryTreePostOrder 后序遍历二叉树
+// BinaryTreePostOrder 根据根节点后序遍历二叉树
 func BinaryTreePostOrder(root *binaryTreeNode) {
 	if left := root.left; left != nil {
 		BinaryTreePostOrder(left)
