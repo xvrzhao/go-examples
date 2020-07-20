@@ -12,3 +12,10 @@ func NoDeadlock() {
 	ch := make(chan int)
 	ch <- 1 // block but not deadlock
 }
+
+func DeadlockWithSelect() {
+	go func() {
+		select {} // blocked
+	}()
+	<-make(chan int) // blocked and a deadlock will occur
+}
