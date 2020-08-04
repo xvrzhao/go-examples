@@ -68,16 +68,21 @@ func RunMapAddressable() {
 }
 
 func RunMapIterate() {
-	m := map[string]string{
-		"a": "1",
-		"b": "2",
-		"c": "3",
-		"d": "4",
-		"e": "5",
-		"f": "6",
+	var m map[string]string
+
+	initM := func() {
+		m = map[string]string{
+			"a": "1",
+			"b": "2",
+			"c": "3",
+			"d": "4",
+			"e": "5",
+			"f": "6",
+		}
 	}
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10; i++ {
+		initM()
 
 		// do both add and delete when iterate a map, the result will be unknown
 		for k, v := range m {
@@ -88,9 +93,14 @@ func RunMapIterate() {
 		fmt.Println(m)
 	}
 	// stdout:
+	// map[2:b 3:c 4:d 5:e 6:f a:1]
 	// map[1:a 2:b 3:c 4:d 5:e 6:f]
-	// map[2:b a:1 c:3 d:4 e:5 f:6]
-	// map[3:c 4:d 5:e 6:f a:1 b:2]
-	// map[1:a 2:b 6:f c:3 d:4 e:5]
-	// map[3:c 4:d a:1 b:2 e:5 f:6]
+	// map[1:a 3:c 4:d 5:e 6:f b:2]
+	// map[2:b 3:c 4:d 5:e 6:f a:1]
+	// map[1:a 2:b 3:c 5:e 6:f d:4]
+	// map[1:a 2:b 3:c 4:d 5:e 6:f]
+	// map[1:a 2:b 4:d 5:e 6:f c:3]
+	// map[1:a 2:b 3:c 4:d 5:e f:6]
+	// map[1:a 3:c 4:d 5:e 6:f b:2]
+	// map[1:a 2:b 3:c 4:d 5:e 6:f]
 }
