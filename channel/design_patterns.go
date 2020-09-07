@@ -29,7 +29,7 @@ func factory() <-chan int {
 // https://raw.githubusercontent.com/unknwon/the-way-to-go_ZH_CN/master/eBook/images/14.2_fig14.2.png
 func FindPrimeNumbersBySieves() {
 	ch := make(chan int)
-	go func(out chan int) {
+	go func(out chan<- int) {
 		for i := 2; i <= 1000; i++ {
 			out <- i
 		}

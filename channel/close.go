@@ -14,7 +14,7 @@ func CloseAChannel() {
 	wg.Add(3)
 
 	// producer
-	go func(ch chan string, wg *sync.WaitGroup) {
+	go func(ch chan<- string, wg *sync.WaitGroup) {
 		defer wg.Done()
 		ch <- "apple"
 		ch <- "orange"
@@ -23,7 +23,7 @@ func CloseAChannel() {
 	}(ch, &wg)
 
 	// consumer
-	go func(ch chan string, wg *sync.WaitGroup) {
+	go func(ch <-chan string, wg *sync.WaitGroup) {
 		defer wg.Done()
 		// when ch is closed, the for loop will stop
 		for item := range ch {
@@ -32,7 +32,7 @@ func CloseAChannel() {
 		fmt.Println("consumer 1 received the close signal from producer.")
 	}(ch, &wg)
 
-	go func(ch chan string, wg *sync.WaitGroup) {
+	go func(ch <-chan string, wg *sync.WaitGroup) {
 		defer wg.Done()
 		for item := range ch {
 			fmt.Printf("consumer 2 received: %s\n", item)
@@ -51,7 +51,7 @@ func RetrieveItemFromClosedChannel() {
 
 	ch := make(chan int)
 
-	go func(ch chan int) {
+	go func(ch chan<- int) {
 		defer wg.Done()
 		for i := 1; i <= 3; i++ {
 			ch <- i
@@ -59,10 +59,16 @@ func RetrieveItemFromClosedChannel() {
 		close(ch) // close the channel when number 1~3 have been sent to it
 	}(ch)
 
-	go func(ch chan int) {
+	go func(ch <-chan int) {
 		defer wg.Done()
 		for i := 0; i < 5; i++ {
-			fmt.Printf("%d ", <-ch) // 1 2 3 0 0
+			n, ok := <-ch
+			fmt.Printf("%d %v\n", n, ok)
+			// 1 true
+			// 2 true
+			// 3 true
+			// 0 false
+			// 0 false
 		}
 	}(ch)
 
