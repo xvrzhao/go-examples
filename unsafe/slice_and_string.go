@@ -100,6 +100,33 @@ func StringIsReferenceType() {
 	fmt.Println(s, b) // abc [97 98 99]
 }
 
+// StringIsReferenceType1 同样演示了 string 是引用类型。
+// 将一个 string 类型的变量赋值给另一个变量时，两者指向同一块内存区域，修改其中一个，另外一个同样会被修改。
+//
+// 你可能会疑问，函数中第一个代码段里修改了 str 变量，为什么 anotherStr 没被修改。这是因为 str 变量是被
+// 重新赋值，内部引用已经被修改了，而 anotherStr 还是指向原来的内存区域。
+// 另外需要注意，我们为什么不直接以字符串字面量的形式赋值 str，这是因为字面量形式的字符串是只读的，没法被修
+// 改，也就没法验证 "修改其一，两者均改"。
+func StringIsReferenceType1() {
+	{
+		str := strings.Repeat("a", 1)
+		anotherStr := str
+		fmt.Println(str, anotherStr) // a a
+		str = "b"
+		fmt.Println(str, anotherStr) // b a
+	}
+	fmt.Println("---")
+	{
+		str := strings.Repeat("a", 1)
+		anotherStr := str
+		fmt.Println(str, anotherStr) // a a
+
+		bytesOfStr := unsafe2Bytes(str)
+		bytesOfStr[0] = 98
+		fmt.Println(str, anotherStr) // b b
+	}
+}
+
 // Bytes2String 演示了使用 unsafe 方法将 bytes 转为 string。
 // 转换之后的 bytes 和 string 指向同一块内存区域。
 //

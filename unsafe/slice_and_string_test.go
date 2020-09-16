@@ -18,6 +18,10 @@ func TestStringIsReferenceType(t *testing.T) {
 	StringIsReferenceType()
 }
 
+func TestStringIsReferenceType1(t *testing.T) {
+	StringIsReferenceType1()
+}
+
 func TestBytes2String(t *testing.T) {
 	Bytes2String()
 }
